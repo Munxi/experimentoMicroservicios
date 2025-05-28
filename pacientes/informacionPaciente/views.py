@@ -12,9 +12,9 @@ def paciente_view(request, id=None):
     pacientes = db['pacientes']
     pacientesCriticos = db['pacientesCriticos']
     if request.method == 'GET':
-        dto = pacientesCriticos.find_one({'ni': ObjectId(id)})
+        dto = pacientesCriticos.find_one({'NI': id})
         if dto is None:
-            dto = pacientes.find_one({'ni': id})
+            dto = pacientes.find_one({'NI': id})
         jsonData = {
             'id': str(dto['_id']),
             'nombres': dto['nombres'],
@@ -24,7 +24,7 @@ def paciente_view(request, id=None):
             'eps': dto['eps'],
         }
         client.close()
-        return JsonResponse(jsonData, 'application/json')
+        return JsonResponse(jsonData, content_type='application/json')
     else:
         data = JSONParser().parse(request)
         result = pacientes.insert_one(data)

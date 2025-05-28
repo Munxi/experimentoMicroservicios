@@ -114,4 +114,4 @@ USE_L10N = True
 
 USE_TZ = True
 
-MONGO_CLI = os.environ['MONGO_CLIENT']
+MONGO_CLI = os.environ['MONGO_CLI']
