@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'sistemaDeApoyo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'test_db',
-        'USER': 'test_user',
-        'PASSWORD': '123',
-        'HOST': '10.128.0.13',
+        'NAME': 'eventos_db',
+        'USER': 'eventos_user',
+        'PASSWORD': 'isis2503',
+        'HOST': '10.128.0.82',
         'PORT': '',
     }
 }
