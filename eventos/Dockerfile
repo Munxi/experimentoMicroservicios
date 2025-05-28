@@ -6,10 +6,10 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /
 
 
-COPY requirements.txt /app/
+COPY requirements.txt /
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . /app/
+COPY . /
 
 RUN python manage.py migrate --noinput
 
