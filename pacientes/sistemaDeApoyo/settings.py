@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'informacionPaciente',
-    'manejadorEventos',
+    'informacionPaciente'
 ]
 
 MIDDLEWARE = [
@@ -75,16 +74,12 @@ WSGI_APPLICATION = 'sistemaDeApoyo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'test_db',
-        'USER': 'test_user',
-        'PASSWORD': '123',
-        'HOST': '10.128.0.13',
-        'PORT': '',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 
 # Password validation
@@ -119,3 +114,4 @@ USE_L10N = True
 
 USE_TZ = True
 
+MONGO_CLI = os.environ['MONGO_CLIENT']
