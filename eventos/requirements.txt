@@ -5,3 +5,4 @@ dnspython
 pymongo
 sqlparse
 tzdata
+psycopg2
