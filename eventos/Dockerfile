@@ -7,7 +7,7 @@ WORKDIR /eventos/
 
 
 COPY requirements.txt /eventos/
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY . /eventos/
 
@@ -20,4 +20,4 @@ RUN python manage.py collectstatic --noinput
 EXPOSE 8000
 
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "tu_proyecto.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "eventos.wsgi:application"]
