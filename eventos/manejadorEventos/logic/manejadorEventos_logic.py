@@ -1,7 +1,5 @@
 import requests
-from django.core.exceptions import ValidationError
 from ..models import Evento
-from informacionPaciente.models import Paciente
 from django.conf import settings
 
 
@@ -12,18 +10,24 @@ def verificar_doctor(doctor_id):
     except requests.exceptions.RequestException:
         return False
 
+def verificar_paciente(paciente_ni):
+    try:
+        response = requests.get(f"{settings.PACIENTES_MS_URL}/{paciente_ni}")
+        return response.status_code == 200
+    except requests.exceptions.RequestException:
+        return False
+
 def create_evento(evento_data):
-    
-    doctor_id = evento_data.get('doctorEncargado')
+    doctor_id = evento_data.get('doctor_id')
+    paciente_ni = evento_data.get('ni_paciente')
     if not doctor_id or not verificar_doctor(doctor_id):
         raise ValueError(f"Doctor con ID {doctor_id} no encontrado")
-    
-    paciente_ni = evento_data.get('paciente_ni')
-    paciente = Paciente.objects.get(NI=paciente_ni)
+    if not paciente_ni or not verificar_paciente(paciente_ni):
+        raise ValueError(f"Paciente con NI {paciente_ni} no encontrado")
     evento = Evento(
-        paciente=paciente,
+        ni_paciente=evento_data['ni_paciente'],
         tipo=evento_data['tipo'],
-        doctorEncargado=evento_data['doctorEncargado'],
+        doctor_id=evento_data['doctor_id'],
         resultado=evento_data.get('resultado'),
         fecha=evento_data['fecha'],
         diagnostico=evento_data.get('diagnostico'),

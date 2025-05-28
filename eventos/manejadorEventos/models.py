@@ -1,5 +1,4 @@
 from django.db import models
-from informacionPaciente.models import Paciente
 
 class Evento(models.Model):
     TIPO_EVENTO = [('Consulta médica','Consulta médica'),
@@ -8,9 +7,9 @@ class Evento(models.Model):
                       ('EEG','EEG'),
                       ('MRI','MRI'),
                       ('miRNA','miRNA')]
-    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    ni_paciente = models.IntegerField()
     tipo = models.CharField(max_length=50, choices=TIPO_EVENTO)
-    doctorEncargado = models.CharField(max_length=50)
+    doctor_id = models.IntegerField()
     resultado = models.CharField(max_length=500, null = True,blank=True)
     fecha = models.CharField(max_length=50)
     diagnostico = models.CharField(max_length=500, null=True,blank=True)
