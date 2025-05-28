@@ -11,17 +11,14 @@ def evento_view(request):
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
-            
-            #doctor
-            doctor_resp = requests.get(f"{settings.DOCTORES_MS_URL}/{data['doctorEncargado']}")
-            if doctor_resp.status_code != 200:
-                return JsonResponse({"error": "El doctor no existe"}, status=400)
-
             evento_dto = manejadorEventos_logic.create_evento(data)
             evento = serializers.serialize('json', [evento_dto, ])
             return HttpResponse(evento, 'application/json', status=201)
 
-        except Exception as e:
-            return JsonResponse({"error": str(e)}, status=500)
+        except ValueError as ve:
+            return JsonResponse({"error": str(ve)}, status=400)
 
-    return JsonResponse({'error': 'Método no permitido'}, status=405)
+        except Exception as e:
+            return JsonResponse({"error": "Error interno del servidor"}, status=500)
+
+    return JsonResponse({'error': 'No permitido'}, status=405)
