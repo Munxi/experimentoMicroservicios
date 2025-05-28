@@ -2,3 +2,9 @@ Django
 psycopg2-binary
 pytz
 sqlparse
+asgiref==3.8.1
+djangorestframework
+dnspython
+pymongo
+sqlparse
+tzdata
