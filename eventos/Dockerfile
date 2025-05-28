@@ -3,13 +3,13 @@ FROM python:3.9-slim-buster
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /
+WORKDIR /eventos/
 
 
-COPY requirements.txt /
+COPY requirements.txt /eventos/
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . /
+COPY . /eventos/
 
 RUN python manage.py migrate --noinput
 
