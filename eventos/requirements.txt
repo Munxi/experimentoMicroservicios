@@ -6,3 +6,4 @@ pymongo
 sqlparse
 tzdata
 psycopg2-binary
+requests
