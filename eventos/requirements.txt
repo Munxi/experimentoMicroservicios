@@ -1,8 +1,5 @@
-Django
-psycopg2-binary
-pytz
-sqlparse
 asgiref==3.8.1
+Django
 djangorestframework
 dnspython
 pymongo
