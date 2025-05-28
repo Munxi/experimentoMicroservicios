@@ -18,7 +18,8 @@ def evento_view(request):
         except ValueError as ve:
             return JsonResponse({"error": str(ve)}, status=400)
 
-        except Exception as e:
-            return JsonResponse({"error": "Error interno del servidor"}, status=500)
+#        except Exception as e:
+#            return JsonResponse({"error": "Error interno del servidor"}, status=500)
 
     return JsonResponse({'error': 'No permitido'}, status=405)
+
