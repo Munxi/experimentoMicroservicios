@@ -20,7 +20,7 @@ def evento_view(request):
             # paciente
             paciente_resp = requests.get(f"{settings.PACIENTES_MS_URL}/{data['paciente_ni']}")
             if paciente_resp.status_code != 200:
-                return JsonResponse({"error": "El paciente no eixste"}, status=400)
+                return JsonResponse({"error": "El paciente no existe"}, status=400)
 
             evento_dto = manejadorEventos_logic.create_evento(data)
             evento = serializers.serialize('json', [evento_dto, ])

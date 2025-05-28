@@ -119,3 +119,5 @@ USE_L10N = True
 
 USE_TZ = True
 
+PACIENTES_MS_URL = "http://10.128.0.87:8080/pacientes"
+DOCTORES_MS_URL = "http://10.128.0.85:8080/doctores"
