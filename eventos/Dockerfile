@@ -3,7 +3,7 @@ FROM python:3.9-slim-buster
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /eventos
+WORKDIR /
 
 
 COPY requirements.txt /app/
