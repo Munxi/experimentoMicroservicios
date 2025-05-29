@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware'
 ]
 
 ROOT_URLCONF = 'sistemaDeApoyo.urls'
@@ -137,4 +138,4 @@ SOCIAL_AUTH_AUTH0_DOMAIN = 'dev-bc8k72l5i83wuj6s.us.auth0.com'
 SOCIAL_AUTH_AUTH0_KEY = 'pgwDRcgfajzPqRde7d9wg3SIhLUDSR4f'
 SOCIAL_AUTH_AUTH0_SECRET = 'kvSTGLJSNd5XsetpshxxFb3SZsHytgLnkW5fVKZm7v_Z0TscE7u23BGW0RQMOoPK'
 SOCIAL_AUTH_AUTH0_SCOPE = [ 'openid', 'profile','email', 'role', ]
-AUTHENTICATION_BACKENDS = { 'seguridadEventos.auth0backend.Auth0', 'django.contrib.auth.backends.ModelBackend'}
+AUTHENTICATION_BACKENDS = { 'seguridadEventos.auth0backend.Auth0', 'django.contrib.auth.backends.ModelBackend','social_core.backends.auth0.Auth0OAuth2'}
