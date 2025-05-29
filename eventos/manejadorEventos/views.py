@@ -3,8 +3,9 @@ from django.views.decorators.csrf import csrf_exempt
 from .logic import manejadorEventos_logic
 from django.core import serializers
 import json
-import requests
-from django.conf import settings
+
+from .models import Evento
+
 
 @csrf_exempt
 def evento_view(request):
@@ -22,4 +23,23 @@ def evento_view(request):
 #            return JsonResponse({"error": "Error interno del servidor"}, status=500)
 
     return JsonResponse({'error': 'No permitido'}, status=405)
+
+@csrf_exempt
+def eventos_por_paciente(request, ni_paciente):
+    if request.method == 'GET':
+        eventos = Evento.objects.filter(ni_paciente=ni_paciente)
+        data = []
+        for evento in eventos:
+            data.append({
+                'id': evento.id,
+                'ni_paciente': evento.ni_paciente,
+                'doctor_id': evento.doctor_id,
+                'resultado': evento.resultado,
+                'fecha': evento.fecha,
+                'diagnostico': evento.diagnostico,
+            })
+        return JsonResponse(data, safe=False)
+    return JsonResponse({'error': 'No permitido'}, status=405)
+
+
 

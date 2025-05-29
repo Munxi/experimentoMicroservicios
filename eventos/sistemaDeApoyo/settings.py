@@ -81,7 +81,7 @@ DATABASES = {
         'USER': 'eventos_user',
         'PASSWORD': 'isis2503',
         'HOST': '10.128.0.82',
-        'PORT': '',
+        'PORT': '5432',
     }
 }
 
