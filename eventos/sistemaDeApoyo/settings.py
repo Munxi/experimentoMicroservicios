@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'manejadorEventos',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,14 @@ USE_TZ = True
 
 PACIENTES_MS_URL = "http://10.128.0.87:8080/pacientes"
 DOCTORES_MS_URL = "http://10.128.0.85:8080/doctores"
+
+LOGIN_URL = "/login/auth0"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "https://dev-bc8k72l5i83wuj6s.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F35.223.172.0:8080"
+
+SOCIAL_AUTH_TRAILING_SLASH = False # Remove end slash from routes
+SOCIAL_AUTH_AUTH0_DOMAIN = 'dev-bc8k72l5i83wuj6s.us.auth0.com'
+SOCIAL_AUTH_AUTH0_KEY = 'pgwDRcgfajzPqRde7d9wg3SIhLUDSR4f'
+SOCIAL_AUTH_AUTH0_SECRET = 'kvSTGLJSNd5XsetpshxxFb3SZsHytgLnkW5fVKZm7v_Z0TscE7u23BGW0RQMOoPK'
+SOCIAL_AUTH_AUTH0_SCOPE = [ 'openid', 'profile','email', 'role', ]
+AUTHENTICATION_BACKENDS = { 'seguridadEventos.auth0backend.Auth0', 'django.contrib.auth.backends.ModelBackend'}

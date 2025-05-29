@@ -23,4 +23,6 @@ urlpatterns = [
     #path('pacientes/' , include('informacionPaciente.urls')),
     path('eventos/',include('manejadorEventos.urls')),
     path('health-check/', views.healthCheck),
+    path(r'', include('django.contrib.auth.urls')),
+    path(r'', include('social_django.urls'))
 ]

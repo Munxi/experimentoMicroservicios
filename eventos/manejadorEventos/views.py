@@ -1,6 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .logic import manejadorEventos_logic
+from ..sistemaDeApoyo.auth0backend import getRole
 from django.core import serializers
 import json
 
@@ -24,9 +26,9 @@ def evento_view(request):
 
     return JsonResponse({'error': 'No permitido'}, status=405)
 
-@csrf_exempt
+@login_required
 def eventos_por_paciente(request, ni_paciente):
-    if request.method == 'GET':
+    if request.method == 'GET' and getRole(request) == "medico":
         eventos = Evento.objects.filter(ni_paciente=ni_paciente)
         data = []
         for evento in eventos:
